@@ -1,0 +1,10 @@
+{
+  "name": "scene-template",
+  "version": "0.0",
+  "dependencies": {
+    "gl-matrix": "~2.2.1"
+  },
+  "devDependencies": {
+    "qunit": "~1.14.0"
+  }
+}
