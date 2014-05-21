@@ -1,6 +1,6 @@
-test(" Reading the object file.", function(){
+test(' Reading the object file.', function(){
    deepEqual(
-      objectImport("../example/data/cube.obj")["vertices"], 
+      objectImport('../example/data/cube.obj')['vertices'], 
       [0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1,
        0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1,
        0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1,
@@ -13,6 +13,6 @@ test(" Reading the object file.", function(){
        0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1,
        0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
        0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1],
-       " The cube.obj file was processed correctly."
+       ' The cube.obj file was processed correctly.'
       );
 });

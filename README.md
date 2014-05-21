@@ -22,21 +22,21 @@ Now you can use the functions *shaderImport* and *objectImport* in the webGL con
 
 ## Usage
 
-*shaderImport* takes as parameters the paths to the vertex and fragment shaders as well as the webGL context object. It returns the object that represents the shader program if all the steps of compiling and linking succeeded.
+The code snippets are in the *scripts.js* file of the example.
 
 ```javascript
-	var gl = document.getElementById("scene").getContext("webgl");
-	  . . . 
-	var shaderProgram = shaderImport(["shaders/vertex.glsl", "shaders/fragment.glsl"], gl);
-	  . . . 
-	gl.useProgram(shaderProgram);
-
-```
-
-*objectImport* sets up an array of arrays, which are the vertex, textures, and normals in a format that can be passed to the buffers and rendered directly.
-
-```javascript
-    var bufferObject = objectImport("path/to/file/**.obj");
+    var bufferObject = objectImport("data/cube.obj");
       . . . 
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(bufferData["vertices"]), gl.STATIC_DRAW);
 ```
+
+```javascript
+   var gl = document.getElementById("scene").getContext("webgl");
+     . . . 
+   var shaderProgram = shaderImport(["shaders/vertex.glsl", "shaders/fragment.glsl"], gl);
+     . . . 
+   gl.useProgram(shaderProgram);
+
+```
+
+objectImport* sets up an array of arrays, which are the vertex, textures, and normals in a format that can be passed to the buffers and rendered directly. Each of the respective buffers are indexed as *vertices*, *textures*, and *normals*. *shaderImport* takes as parameters the paths to the vertex and fragment shaders as well as the webGL context object. It returns the object that represents the shader program if all the steps of compiling and linking succeeded.

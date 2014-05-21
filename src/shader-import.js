@@ -16,7 +16,7 @@ function shaderImport(paths, gl){
 
    for(var i = 0; paths[i]; i++){
  
-      shaderReader.open("GET", paths[i], false);
+      shaderReader.open('GET', paths[i], false);
 
       shaderReader.onload = function(){
     
@@ -24,7 +24,7 @@ function shaderImport(paths, gl){
             if(shaderReader.status == 200){
                sources[i] = shaderReader.responseText;
             } else {
-               console.log(" Their was an error loading the vertex shader. \n");
+               console.log(' Their was an error loading the vertex shader. \n');
             }
          }
       };
@@ -57,7 +57,7 @@ function shaderImport(paths, gl){
 
    // Check to see if the program linked.
    if(!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)){
-      alert("The shaders could not be initialized.");
+      alert(' The shaders could not be initialized.');
    }
 
    return shaderProgram;
