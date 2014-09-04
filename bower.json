@@ -1,5 +1,5 @@
 {
-  "name": "scene-template",
+  "name": "graphics-import",
   "version": "0.0",
   "dependencies": {
     "gl-matrix": "~2.2.1"
