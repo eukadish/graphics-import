@@ -3,10 +3,12 @@
  * in any canvas tag with id="scene".  
  */
 (function(){
+	
+	var scene = document.getElementById('scene');
           
   // Check the if the web browser can display 3D graphics.
   try {
-    var gl = document.getElementById('scene').getContext('webgl');
+    var gl = scene.getContext('webgl');
   } catch(e){
     if(!gl){
       alert(' WebGL could not be initialized.');
@@ -52,9 +54,7 @@
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-  gl.viewport(0, 0, 
-                    document.getElementById('scene').width, 
-                    document.getElementById('scene').height);
+  gl.viewport(0, 0, scene.width, scene.height);
      
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
