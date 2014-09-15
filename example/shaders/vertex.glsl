@@ -1,8 +1,8 @@
-attribute vec4 vertex;
-attribute vec4 color;
-
 uniform mat4 projection;
 uniform mat4 modelview; 
+
+attribute vec4 vertex;
+attribute vec4 color;
 
 varying vec4 c;
 

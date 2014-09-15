@@ -33,19 +33,18 @@ function objectImport(path){
         
         // Empty arrays are filtered out. They are returned
         // for every blank line in the file.
-        file = objectReader
-                   .responseText
-                   .split('\n')
-                   .filter(function(item){
-                     return item != [];
-                   });
+        file = objectReader.responseText
+                           .split('\n')
+                           .filter(function(item){
+                             return item != [];
+                           });
       } else {
-          console.log(' Their was an error loading the object file. \n');
+        console.log(' Their was an error loading the object file. \n');
       }
     }
   };
 
-  objectReader.send(null);
+  objectReader.send();
 
   file.forEach(function(line){
     
@@ -76,6 +75,7 @@ function objectImport(path){
     }
   }); 
 
+  // Format the data as an indexed array.
   for(var k = 0; k < indices.length; k = k + 3){
     
     bufferData['vertices'] = bufferData['vertices'].concat(vertices[indices[k] - 1]);

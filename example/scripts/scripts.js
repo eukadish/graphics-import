@@ -1,12 +1,12 @@
 /**
- * Creates a webGL context in supported browsers and will render a scene 
- * in any canvas tag with id="scene".  
+ * Creates a WebGL context in supported browsers and will render a scene 
+ * in any canvas tag with an id set to "scene".  
  */
 (function(){
 	
 	var scene = document.getElementById('scene');
           
-  // Check the if the web browser can display 3D graphics.
+  // Check that the browser has WebGL support.
   try {
     var gl = scene.getContext('webgl');
   } catch(e){
