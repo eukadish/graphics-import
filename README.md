@@ -1,9 +1,5 @@
 # Graphics Import
 
-> Utility functions for rendering with WebGL.
-
-## Summary
-
 In a WebGL context, putting together the shader programs and manually specifying the buffer data are both tedious processes that require many steps and are difficult to debug. The files contained in this module abstract away those tasks making it easier to draw objects and shade them.
 
 ## Setup
