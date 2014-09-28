@@ -48,11 +48,14 @@ var gl = scene.getContext("webgl");
 ```javascript
 var bufferData = objectImport("data/cube.obj");
   . . .
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(bufferData["vertices"]), gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER,
+                new Float32Array(bufferData["vertices"]),
+                                            gl.STATIC_DRAW);
 ```
 
 ```javascript
-var shaderProgram = shaderImport(["shaders/vertex.glsl", "shaders/fragment.glsl"], gl);
+var shaderProgram = shaderImport(["shaders/vertex.glsl",
+                                    "shaders/fragment.glsl"], gl);
   . . .
 gl.useProgram(shaderProgram);
 ```
