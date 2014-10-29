@@ -3,12 +3,13 @@
  * in any canvas tag with an id set to "scene".  
  */
 (function(){
-	
+
+  var gl;	
 	var scene = document.getElementById('scene');
           
   // Check the if the web browser can display 3D graphics.
   try {
-    var gl = scene.getContext('webgl');
+    gl = scene.getContext('webgl');
   } catch(e){
     if(!gl){
       alert(' WebGL could not be initialized.');
@@ -26,7 +27,7 @@
   var vertexBuffer = gl.createBuffer();
     
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(bufferData['vertices']), gl.STATIC_DRAW);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(bufferData.vertices), gl.STATIC_DRAW);
   
   // Buffer containing color data to be interpolated across the faces of a cube.
   var colorBuffer = gl.createBuffer();
