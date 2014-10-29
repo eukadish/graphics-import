@@ -19,9 +19,9 @@ function objectImport(path){
 
   var bufferData = [];
 
-  bufferData['vertices'] = [];
-  bufferData['textures'] = [];
-  bufferData['normals']  = [];
+  bufferData.vertices = [];
+  bufferData.textures = [];
+  bufferData.normals  = [];
 
   objectReader.open('GET', path, false);
 
@@ -29,7 +29,7 @@ function objectImport(path){
   objectReader.onload = function(){
     
     if(objectReader.readyState == 4){
-      if(objectReader.status == 200){
+      if(objectReader.status == 200){        
         
         // Empty arrays are filtered out. They are returned
         // for every blank line in the file.
@@ -50,7 +50,7 @@ function objectImport(path){
     
     line = line.split(' ')
                .filter(function(item){
-                 return item != ''; 
+                 return item !== ''; 
                });
     
     if(line[0] === 'v'){
@@ -78,14 +78,14 @@ function objectImport(path){
   // Format the data as an indexed array.
   for(var k = 0; k < indices.length; k = k + 3){
     
-    bufferData['vertices'] = bufferData['vertices'].concat(vertices[indices[k] - 1]);
+    bufferData.vertices = bufferData.vertices.concat(vertices[indices[k] - 1]);
     
     if(textures.length > 0){
-      bufferData['textures'] = bufferData['textures'].concat(textures[indices[k + 1] - 1]);
+      bufferData.textures = bufferData.textures.concat(textures[indices[k + 1] - 1]);
     }
 
     if(normals.length > 0){
-      bufferData['normals']  = bufferData['normals'].concat(normals[indices[k + 2] - 1]); 
+      bufferData.normals  = bufferData.normals.concat(normals[indices[k + 2] - 1]); 
     }
   }
 

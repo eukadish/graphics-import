@@ -42,8 +42,8 @@ function shaderImport(paths, gl){
   gl.compileShader(shaders[1]);
 
   // Check to see that the shaders compiled.
-  for(var i = 0; i < shaders.length; i++){
-    var shader = shaders[i];
+  for(var j = 0; j < shaders.length; j++){
+    var shader = shaders[j];
     if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)){
       alert(gl.getShaderInfoLog(shader));
     }
