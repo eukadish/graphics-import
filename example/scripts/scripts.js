@@ -4,8 +4,8 @@
  */
 (function(){
 
-  var gl;	
-	var scene = document.getElementById('scene');
+  var gl;
+  var scene = document.getElementById('scene');
           
   // Check that the browser has WebGL support.
   try {
@@ -27,7 +27,7 @@
   var vertexBuffer = gl.createBuffer();
     
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(bufferData['vertices']), gl.STATIC_DRAW);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(bufferData.vertices), gl.STATIC_DRAW);
   
   // Buffer containing color data to be interpolated across the faces of a cube.
   var colorBuffer = gl.createBuffer();
