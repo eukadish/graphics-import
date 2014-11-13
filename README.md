@@ -4,33 +4,36 @@ In a WebGL context, putting together the shader programs and manually specifying
 
 ## Setup
 
-The dependencies are [gl-matrix](https://github.com/toji/gl-matrix), matrix and vector javascript library, along with the [qunit](http://qunitjs.com), unit testing framework. To run the tests navigate to the *runner.html* file in the tests directory with your browser. To avoid downloading these packages manually, the command
+The dependencies are the [gl-matrix](https://github.com/toj/igl-matrix), matrix and vector javascript library, along with the [qunit](http://qunitjs.com), unit testing framework. To avoid downloading these packages manually, the command
 
     bower install
 
-will fetch the required libraries and place them into the *components* folder at the root directory. The [bower](http://bower.io) command requires [node.js](http://nodejs.org) to be installed.
+will fetch the required libraries and place them into the *components* folder at the root directory. To get [bower](http://bower.io), [node.js](http://nodejs.org) has to be installed. Then run
 
-    npm install bower
+    npm install -g bower
 
-will download the package.
+to download the package. For the [Grunt](http://gruntjs.com/getting-started) tasks, [grunt-cli](https://github.com/gruntjs/grunt-cli) has to be installed.
 
-## Viewing
+    npm install -g grunt-cli
 
-With [grunt-cli](https://github.com/gruntjs/grunt-cli) installed,
+Also, make sure to download all the npm packages.
 
     npm install
 
-will retrieve all the [grunt](http://gruntjs.com) dependencies. Then running this application locally is a simple task.
+## Viewing
+
+Running this application locally can be done with a Grunt task.
 
     grunt connect
 
-To checkout the example after all the dependencies have been successfully downloaded, open the contents of the example folder or just look at the [demo](http://eugenekadish.github.io/graphics-import).
+To check how the template is rendering, navigate to the index file in the root directory with any browser that has WebGL support. Alternatively, check out the [project site](http://eugenekadish.github.io/scene-template) to compare the widget. The tests can be run in the browser as well, by opening *runner.html* in *tests*.
+
 
 ## Documentation
 
 __objectImport(__*path*__)__
 
-> Reads in the obj file specified at *path*. An array of arrays is returned, containing vertex, textures, and normals attributes in a format that can be passed to the buffers and rendered directly. Each of the respective buffers are referenced as *vertices*, *textures*, and *normals*.
+> Reads in the obj file specified at *path*. An object with arrays containing the vertices, textures, and normals is returned in a format that can be passed to the buffers and rendered directly. Each of the respective buffers are referenced as *vertices*, *textures*, and *normals*.
  
 __shaderImport(__*paths*__,__ *gl*__)__
 
@@ -38,15 +41,15 @@ __shaderImport(__*paths*__,__ *gl*__)__
 
 ## Usage
 
-With all the tests passing and a working example; move on to include the function this module either from *source* or *distribution*. Here is a small snippet from the example using this package.
+With all the tests passing and a working example; move on to include the functions in this module either from *source* or *distribution*. Here is a small snippet from the example using this package.
 
 ```javascript
-var gl = scene.getContext("webgl");
+var gl = scene.getContext('webgl');
 var scene = document.getElemetById('scene');
 ```
 
 ```javascript
-var bufferData = objectImport("data/cube.obj");
+var bufferData = objectImport('data/cube.obj');
   . . .
 gl.bufferData(gl.ARRAY_BUFFER,
                 new Float32Array(bufferData.vertices),
@@ -54,8 +57,8 @@ gl.bufferData(gl.ARRAY_BUFFER,
 ```
 
 ```javascript
-var shaderProgram = shaderImport(["shaders/vertex.glsl",
-                                    "shaders/fragment.glsl"], gl);
+var shaderProgram = shaderImport(['shaders/vertex.glsl',
+                                    'shaders/fragment.glsl'], gl);
   . . .
 gl.useProgram(shaderProgram);
 ```
