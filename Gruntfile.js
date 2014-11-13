@@ -1,18 +1,13 @@
-module.exports = function(grunt) {
- 
+module.exports = function(grunt){
+
   // Configure the tasks.
   grunt.initConfig({
-    
+
     pkg: grunt.file.readJSON('package.json'),
 
     concat: {
       options: {
-        stripBanners: {
-          options: {
-            block: true,
-            line: true
-          }
-        }
+        stripBanners: true
       },
       dist: {
         src: ['source/**/*.js'],
@@ -27,10 +22,10 @@ module.exports = function(grunt) {
         }
       }
     },
- 
+
     jshint: {
-      uses_defaults: ['Gruntfile.js', 'source/object-import.js', 'tests/*.js']
-    },             
+      uses_defaults: ['Gruntfile.js', 'source/*.js', 'tests/*.js']
+    },
 
     connect: {
       server : {
@@ -41,13 +36,13 @@ module.exports = function(grunt) {
       }
     }
   });
-  
+
   // Load the tasks.
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  
+
   // Register the tasks.
   grunt.registerTask('build', ['jshint', 'concat', 'uglify']);
 };
