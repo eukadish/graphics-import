@@ -4,7 +4,7 @@
  *
  * @param  {Array}                 paths An array of two strings that are the relative paths of the 
  *                                       vertex and fragment shaders.
- *         {WebGLRenderingContext} gl    The WebGL API.
+ * @param  {WebGLRenderingContext} gl    The WebGL API.
  * @return {WebGLProgram}                Shader program that can be attached to the WebGL context.
  */
 function shaderImport(paths, gl){
@@ -14,12 +14,14 @@ function shaderImport(paths, gl){
   var sources = [];
   var shaders = [];
 
-  for(var i = 0; paths[i]; i++){
- 
-    shaderReader.open('GET', paths[i], false);
-
+  /**
+   * Synchronously loads source data from shader files.
+   * 
+   * @param {Number} i Index of a shader file path to read in.
+   */
+  function shaderLoader(i){
     shaderReader.onload = function(){
-    
+
       if(shaderReader.readyState == 4){
         if(shaderReader.status == 200){
           sources[i] = shaderReader.responseText;
@@ -28,7 +30,12 @@ function shaderImport(paths, gl){
         }
       }
     };
+  }
 
+  for(var i = 0; paths[i]; i++){
+
+    shaderReader.open('GET', paths[i], false);
+    shaderLoader(i);
     shaderReader.send();
   }
 
@@ -50,7 +57,7 @@ function shaderImport(paths, gl){
   }
 
   var shaderProgram = gl.createProgram();
-      
+
   gl.attachShader(shaderProgram, shaders[0]);
   gl.attachShader(shaderProgram, shaders[1]);
   gl.linkProgram(shaderProgram);
