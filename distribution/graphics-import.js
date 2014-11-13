@@ -1,7 +1,7 @@
 function objectImport(path){
 
   var objectReader = new XMLHttpRequest();
-  
+ 
   var file, line;
 
   var vertices = [];
@@ -19,10 +19,10 @@ function objectImport(path){
 
   // Load the object file synchronously.
   objectReader.onload = function(){
-    
+
     if(objectReader.readyState == 4){
-      if(objectReader.status == 200){        
-        
+      if(objectReader.status == 200){
+
         // Empty arrays are filtered out. They are returned
         // for every blank line in the file.
         file = objectReader.responseText
@@ -39,12 +39,12 @@ function objectImport(path){
   objectReader.send();
 
   file.forEach(function(line){
-    
+
     line = line.split(' ')
                .filter(function(item){
-                 return item !== ''; 
+                 return item !== '';
                });
-    
+
     if(line[0] === 'v'){
       line[1] = parseFloat(line[1]);
       line[2] = parseFloat(line[2]);
@@ -54,7 +54,7 @@ function objectImport(path){
       line[1] = parseFloat(line[1]);
       line[2] = parseFloat(line[2]);
       textures.push(line.slice(1));
-    } else if(line[0] === 'vn'){ 
+    } else if(line[0] === 'vn'){
       line[1] = parseFloat(line[1]);
       line[2] = parseFloat(line[2]);
       line[3] = parseFloat(line[3]);
@@ -65,19 +65,19 @@ function objectImport(path){
         indices = indices.concat(line[i].split('/'));
       }
     }
-  }); 
+  });
 
   // Format the data as an indexed array.
   for(var k = 0; k < indices.length; k = k + 3){
-    
+
     bufferData.vertices = bufferData.vertices.concat(vertices[indices[k] - 1]);
-    
+
     if(textures.length > 0){
       bufferData.textures = bufferData.textures.concat(textures[indices[k + 1] - 1]);
     }
 
     if(normals.length > 0){
-      bufferData.normals  = bufferData.normals.concat(normals[indices[k + 2] - 1]); 
+      bufferData.normals  = bufferData.normals.concat(normals[indices[k + 2] - 1]);
     }
   }
 
@@ -91,12 +91,14 @@ function shaderImport(paths, gl){
   var sources = [];
   var shaders = [];
 
-  for(var i = 0; paths[i]; i++){
- 
-    shaderReader.open('GET', paths[i], false);
-
+  /**
+   * Synchronously loads source data from shader files.
+   * 
+   * @param {Number} i Index of a shader file path to read in.
+   */
+  function shaderLoader(i){
     shaderReader.onload = function(){
-    
+
       if(shaderReader.readyState == 4){
         if(shaderReader.status == 200){
           sources[i] = shaderReader.responseText;
@@ -105,7 +107,12 @@ function shaderImport(paths, gl){
         }
       }
     };
+  }
 
+  for(var i = 0; paths[i]; i++){
+
+    shaderReader.open('GET', paths[i], false);
+    shaderLoader(i);
     shaderReader.send();
   }
 
@@ -127,7 +134,7 @@ function shaderImport(paths, gl){
   }
 
   var shaderProgram = gl.createProgram();
-      
+
   gl.attachShader(shaderProgram, shaders[0]);
   gl.attachShader(shaderProgram, shaders[1]);
   gl.linkProgram(shaderProgram);
