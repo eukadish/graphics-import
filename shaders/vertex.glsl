@@ -1,5 +1,5 @@
 uniform mat4 projection;
-uniform mat4 modelview; 
+uniform mat4 modelview;
 
 attribute vec4 vertex;
 attribute vec4 color;
