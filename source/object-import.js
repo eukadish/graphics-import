@@ -8,6 +8,8 @@
  */
 function objectImport(path){
 
+  'use strict';
+
   var objectReader = new XMLHttpRequest();
  
   var file, line;

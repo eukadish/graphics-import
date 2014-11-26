@@ -8,6 +8,8 @@
  * @return {WebGLProgram}                Shader program that can be attached to the WebGL context.
  */
 function shaderImport(paths, gl){
+  
+  'use strict';
 
   var shaderReader = new XMLHttpRequest();
 
